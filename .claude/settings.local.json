@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s -L --max-time 40 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\" \"https://www.chosic.com/free-music/wedding/\")",
+      "Bash(curl -s -L --max-time 40 -A \"Mozilla/5.0 \\(Windows NT 10.0; Win64; x64\\)\" \"https://www.chosic.com/free-music/wedding/\" -o /tmp/wed.html -w \"HTTP %{http_code} size %{size_download}\\\\n\")",
+      "Read(//tmp/**)"
+    ]
+  }
+}

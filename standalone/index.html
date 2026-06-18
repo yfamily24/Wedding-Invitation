@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The Wedding of Ilham & Devi — 14.11.2026</title>
+<meta name="description" content="Undangan Pernikahan Ilham Ramadhan & Devi Ajeng Juwitasari — Sabtu, 14 November 2026, Bumi Bandhawa, Bandung." />
+<!-- Open Graph (for nice WhatsApp/social previews) -->
+<meta property="og:title" content="The Wedding of Ilham & Devi" />
+<meta property="og:description" content="Sabtu, 14 November 2026 · Bumi Bandhawa, Bandung. Merupakan suatu kehormatan apabila Bapak/Ibu/Saudara/i berkenan hadir." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --green:#3a4a3f;        /* deep sage */
+    --green-soft:#5d7264;
+    --gold:#b08d57;         /* muted gold */
+    --gold-light:#cbb088;
+    --cream:#f7f3ec;        /* paper */
+    --cream-2:#efe7da;
+    --ink:#33352f;
+    --rose:#b98a7d;
+    --shadow:rgba(58,74,63,.18);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Montserrat',sans-serif;
+    color:var(--ink);
+    background:var(--green);
+    line-height:1.7;
+    overflow-x:hidden;
+  }
+  /* ============ shared ============ */
+  .script{font-family:'Great Vibes',cursive;font-weight:400;line-height:1.1}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .center{text-align:center}
+  .muted{color:var(--green-soft)}
+  .divider{display:flex;align-items:center;justify-content:center;gap:14px;margin:26px auto;max-width:240px}
+  .divider::before,.divider::after{content:"";height:1px;flex:1;background:linear-gradient(90deg,transparent,var(--gold))}
+  .divider span{color:var(--gold);font-size:18px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;cursor:pointer;
+    border:1px solid var(--gold);background:transparent;color:var(--gold);
+    font-family:'Montserrat',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;
+    padding:14px 30px;border-radius:40px;transition:.35s;text-decoration:none;
+  }
+  .btn:hover{background:var(--gold);color:#fff}
+  .btn-solid{background:var(--gold);color:#fff;border-color:var(--gold)}
+  .btn-solid:hover{background:var(--green);border-color:var(--green)}
+
+  /* ============ cover (landing) ============ */
+  #cover{
+    position:fixed;inset:0;z-index:1000;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+    padding:40px 24px;color:var(--cream);
+    background:
+      linear-gradient(rgba(30,40,34,.62),rgba(30,40,34,.72)),
+      radial-gradient(120% 120% at 50% 0%, #4c6052 0%, #2f3d34 60%, #243029 100%);
+    transition:opacity 1s ease, visibility 1s;
+  }
+  #cover.hide{opacity:0;visibility:hidden;pointer-events:none}
+  .cover-frame{
+    border:1px solid rgba(203,176,136,.45);
+    padding:48px 30px;border-radius:6px;max-width:520px;width:100%;
+    backdrop-filter:blur(1px);
+  }
+  .cover-eyebrow{letter-spacing:5px;font-size:11px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px}
+  .cover-names{font-size:clamp(52px,16vw,92px);color:#fff;margin:6px 0}
+  .cover-date{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:3px;margin-top:8px;color:var(--cream)}
+  .guest-box{margin:30px 0 26px}
+  .guest-box .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light)}
+  .guest-box .name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#fff;margin-top:4px}
+
+  /* ============ page ============ */
+  main{max-width:560px;margin:0 auto;background:var(--cream);box-shadow:0 0 60px rgba(0,0,0,.4);overflow:hidden}
+  section{padding:80px 30px;position:relative}
+  .eyebrow{letter-spacing:4px;font-size:11px;text-transform:uppercase;color:var(--gold)}
+  .reveal{opacity:0;transform:translateY(34px);transition:.9s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* intro */
+  #intro{background:linear-gradient(180deg,var(--cream),var(--cream-2));text-align:center}
+  .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:19px;color:var(--green);max-width:430px;margin:0 auto}
+  .basmalah{font-size:30px;color:var(--gold);margin-bottom:22px}
+
+  /* couple */
+  #couple{background:var(--green);color:var(--cream);text-align:center}
+  #couple .eyebrow{color:var(--gold-light)}
+  .person{margin:34px 0}
+  .person .pname{font-size:clamp(40px,11vw,58px);color:#fff}
+  .person .parents{font-family:'Cormorant Garamond',serif;font-size:17px;color:var(--cream);opacity:.9;margin-top:6px}
+  .person .role{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px}
+  .amp{font-family:'Great Vibes',cursive;font-size:60px;color:var(--gold-light)}
+
+  /* events */
+  #events{background:var(--cream)}
+  .event-card{
+    background:#fff;border:1px solid var(--cream-2);border-radius:10px;
+    padding:34px 26px;margin:20px 0;text-align:center;box-shadow:0 12px 30px -18px var(--shadow);
+  }
+  .event-card h3{font-family:'Cormorant Garamond',serif;font-size:30px;color:var(--green);font-weight:600}
+  .event-card .when{font-size:15px;margin-top:10px;color:var(--ink)}
+  .event-card .big-date{font-family:'Cormorant Garamond',serif;font-size:46px;color:var(--gold);margin:6px 0;font-weight:600}
+
+  /* countdown */
+  #countdown{background:linear-gradient(180deg,var(--green-soft),var(--green));color:#fff;text-align:center}
+  .cd-grid{display:flex;gap:12px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+  .cd-box{background:rgba(255,255,255,.08);border:1px solid rgba(203,176,136,.4);border-radius:10px;padding:18px 10px;min-width:74px}
+  .cd-box .num{font-family:'Cormorant Garamond',serif;font-size:40px;font-weight:600;color:#fff;line-height:1}
+  .cd-box .unit{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-top:6px}
+
+  /* location */
+  #location{background:var(--cream);text-align:center}
+  .map-wrap{border-radius:12px;overflow:hidden;border:1px solid var(--cream-2);margin:24px 0;box-shadow:0 12px 30px -18px var(--shadow)}
+  .map-wrap iframe{display:block;width:100%;height:280px;border:0}
+  .addr{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--green);max-width:420px;margin:0 auto 22px}
+
+  /* rsvp */
+  #rsvp{background:var(--green);color:var(--cream);text-align:center}
+  #rsvp .eyebrow{color:var(--gold-light)}
+  .form{max-width:400px;margin:26px auto 0;text-align:left}
+  .form label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin:16px 0 6px}
+  .form input,.form select,.form textarea{
+    width:100%;padding:13px 14px;border-radius:8px;border:1px solid rgba(203,176,136,.4);
+    background:rgba(255,255,255,.06);color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;
+  }
+  .form textarea{resize:vertical;min-height:80px}
+  .form input::placeholder,.form textarea::placeholder{color:rgba(247,243,236,.45)}
+  .form .btn{margin-top:26px;width:100%;justify-content:center}
+  .rsvp-thanks{display:none;margin-top:24px;padding:20px;border:1px solid var(--gold-light);border-radius:10px;background:rgba(255,255,255,.06)}
+  .rsvp-thanks.show{display:block}
+  .wishes{max-width:430px;margin:34px auto 0;text-align:left}
+  .wishes h4{color:var(--gold-light);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-align:center;margin-bottom:14px}
+  .wish{background:rgba(255,255,255,.06);border-radius:8px;padding:12px 16px;margin:10px 0;font-size:14px}
+  .wish .w-name{color:var(--gold-light);font-weight:600;font-size:13px}
+
+  /* closing */
+  #closing{background:linear-gradient(180deg,var(--cream-2),var(--cream));text-align:center}
+  .closing-names{font-size:clamp(46px,13vw,72px);color:var(--green)}
+
+  footer{background:var(--green);color:var(--cream);text-align:center;padding:30px 20px;font-size:11px;letter-spacing:1px}
+  footer a{color:var(--gold-light)}
+
+  /* music toggle */
+  #music-btn{
+    position:fixed;right:18px;bottom:18px;z-index:1100;width:50px;height:50px;border-radius:50%;
+    border:1px solid var(--gold);background:var(--green);color:var(--gold-light);cursor:pointer;
+    display:none;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.35);
+  }
+  #music-btn.show{display:flex}
+  #music-btn svg{width:22px;height:22px}
+  #music-btn.playing .ico-disc{animation:spin 4s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+</style>
+</head>
+<body>
+
+<!-- ============ COVER ============ -->
+<div id="cover">
+  <div class="cover-frame">
+    <p class="cover-eyebrow">The Wedding Of</p>
+    <h1 class="script cover-names">Ilham &amp; Devi</h1>
+    <p class="cover-date">SABTU, 14 NOVEMBER 2026</p>
+    <div class="guest-box">
+      <p class="lbl">Kepada Yth. Bapak/Ibu/Saudara/i</p>
+      <p class="name" id="guestName">Tamu Undangan</p>
+    </div>
+    <button class="btn btn-solid" id="openBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7l9 6 9-6"/><rect x="3" y="5" width="18" height="14" rx="2"/></svg>
+      Buka Undangan
+    </button>
+  </div>
+</div>
+
+<!-- ============ MUSIC ============ -->
+<audio id="bgm" loop preload="auto" src="assets/song.mp3"></audio>
+<button id="music-btn" aria-label="Putar / hentikan musik">
+  <svg class="ico-disc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="2.4" fill="currentColor"/></svg>
+</button>
+
+<main>
+  <!-- ============ INTRO ============ -->
+  <section id="intro" class="center">
+    <p class="basmalah serif">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
+    <p class="eyebrow">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+    <div class="divider"><span>&#10086;</span></div>
+    <p class="verse reveal">
+      &ldquo;Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan
+      untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung
+      dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa
+      kasih dan sayang.&rdquo;
+    </p>
+    <p class="muted reveal" style="margin-top:14px;font-size:13px;letter-spacing:2px">— Q.S. AR-RUM : 21 —</p>
+  </section>
+
+  <!-- ============ COUPLE ============ -->
+  <section id="couple" class="center">
+    <p class="eyebrow reveal">Dengan memohon rahmat dan ridho Allah SWT,<br/>kami bermaksud menyelenggarakan pernikahan putra-putri kami</p>
+
+    <div class="person reveal">
+      <p class="role">The Groom</p>
+      <h2 class="script pname">Ilham Ramadhan</h2>
+      <p class="parents">Putra dari<br/>Bapak __________ &amp; Ibu __________</p>
+    </div>
+
+    <div class="amp reveal">&amp;</div>
+
+    <div class="person reveal">
+      <p class="role">The Bride</p>
+      <h2 class="script pname">Devi Ajeng Juwitasari</h2>
+      <p class="parents">Putri dari<br/>Bapak __________ &amp; Ibu __________</p>
+    </div>
+  </section>
+
+  <!-- ============ EVENTS ============ -->
+  <section id="events">
+    <div class="center">
+      <p class="eyebrow reveal">Save The Date</p>
+      <h2 class="serif reveal" style="font-size:34px;color:var(--green);margin-top:6px">Akad &amp; Resepsi</h2>
+      <div class="divider"><span>&#10086;</span></div>
+    </div>
+
+    <div class="event-card reveal">
+      <h3>Akad Nikah</h3>
+      <p class="big-date">14</p>
+      <p class="when"><strong>Sabtu, 14 November 2026</strong></p>
+      <p class="when muted">Pukul 09.00 WIB &ndash; Selesai</p>
+      <p class="when muted" style="font-size:13px">(silakan sesuaikan jam acara)</p>
+    </div>
+
+    <div class="event-card reveal">
+      <h3>Resepsi</h3>
+      <p class="big-date">14</p>
+      <p class="when"><strong>Sabtu, 14 November 2026</strong></p>
+      <p class="when muted">Pukul 11.00 &ndash; 14.00 WIB</p>
+      <p class="when muted" style="font-size:13px">(silakan sesuaikan jam acara)</p>
+    </div>
+
+    <p class="center reveal" style="margin-top:22px;color:var(--green-soft)">Bertempat di <strong>Bumi Bandhawa Hotel</strong>, Bandung</p>
+  </section>
+
+  <!-- ============ COUNTDOWN ============ -->
+  <section id="countdown">
+    <p class="eyebrow reveal" style="color:var(--gold-light)">Menuju Hari Bahagia</p>
+    <div class="cd-grid reveal" id="cd">
+      <div class="cd-box"><div class="num" id="cd-d">0</div><div class="unit">Hari</div></div>
+      <div class="cd-box"><div class="num" id="cd-h">0</div><div class="unit">Jam</div></div>
+      <div class="cd-box"><div class="num" id="cd-m">0</div><div class="unit">Menit</div></div>
+      <div class="cd-box"><div class="num" id="cd-s">0</div><div class="unit">Detik</div></div>
+    </div>
+  </section>
+
+  <!-- ============ LOCATION ============ -->
+  <section id="location">
+    <p class="eyebrow reveal">Lokasi Acara</p>
+    <h2 class="serif reveal" style="font-size:34px;color:var(--green);margin-top:6px">Bumi Bandhawa Hotel</h2>
+    <div class="divider"><span>&#10086;</span></div>
+    <p class="addr reveal">Jl. Konstitusi I No.16, Cigadung,<br/>Kec. Cibeunying Kaler, Kota Bandung,<br/>Jawa Barat 40191</p>
+    <div class="map-wrap reveal">
+      <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=Bumi%20Bandhawa%20Hotel%20Jl.%20Konstitusi%20I%20No.16%20Bandung&t=&z=15&ie=UTF8&iwloc=&output=embed"
+        title="Lokasi Bumi Bandhawa Hotel"></iframe>
+    </div>
+    <a class="btn reveal" target="_blank" rel="noopener"
+       href="https://www.google.com/maps/search/?api=1&query=Bumi+Bandhawa+Hotel+Jl.+Konstitusi+I+No.16+Cigadung+Bandung">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      Buka di Google Maps
+    </a>
+  </section>
+
+  <!-- ============ RSVP ============ -->
+  <section id="rsvp">
+    <p class="eyebrow">Konfirmasi Kehadiran</p>
+    <h2 class="serif" style="font-size:34px;color:#fff;margin-top:6px">RSVP</h2>
+    <div class="divider"><span>&#10086;</span></div>
+    <p class="muted" style="color:var(--cream);opacity:.85;font-size:14px">Mohon konfirmasi kehadiran Anda. Doa &amp; ucapan juga sangat kami nantikan.</p>
+
+    <form class="form" id="rsvpForm">
+      <label for="rName">Nama</label>
+      <input id="rName" name="name" type="text" placeholder="Nama lengkap Anda" required />
+
+      <label for="rAttend">Kehadiran</label>
+      <select id="rAttend" name="attend" required>
+        <option value="" disabled selected>Pilih...</option>
+        <option value="Hadir">Insya Allah Hadir</option>
+        <option value="Ragu">Masih Ragu</option>
+        <option value="Tidak Hadir">Maaf, Tidak Bisa Hadir</option>
+      </select>
+
+      <label for="rGuests">Jumlah Tamu</label>
+      <select id="rGuests" name="guests">
+        <option value="1">1 Orang</option>
+        <option value="2">2 Orang</option>
+        <option value="3">3 Orang</option>
+        <option value="4">4 Orang</option>
+      </select>
+
+      <label for="rMsg">Ucapan &amp; Doa</label>
+      <textarea id="rMsg" name="message" placeholder="Tuliskan ucapan & doa restu Anda..."></textarea>
+
+      <button class="btn btn-solid" type="submit">Kirim Konfirmasi</button>
+    </form>
+
+    <div class="rsvp-thanks" id="rsvpThanks">
+      <p class="serif" style="font-size:22px;color:#fff">Terima kasih! 🤍</p>
+      <p style="font-size:14px;margin-top:6px">Konfirmasi &amp; ucapan Anda telah kami terima.</p>
+    </div>
+
+    <div class="wishes" id="wishes" style="display:none">
+      <h4>Ucapan &amp; Doa</h4>
+      <div id="wishList"></div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <section id="closing" class="center">
+    <p class="eyebrow reveal">Merupakan suatu kehormatan dan kebahagiaan bagi kami<br/>apabila Bapak/Ibu/Saudara/i berkenan hadir<br/>untuk memberikan doa restu.</p>
+    <div class="divider"><span>&#10086;</span></div>
+    <p class="serif reveal" style="font-size:18px;color:var(--green-soft)">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+    <p class="reveal" style="margin-top:30px;font-size:13px;letter-spacing:3px;color:var(--gold)">KAMI YANG BERBAHAGIA</p>
+    <h2 class="script closing-names reveal">Ilham &amp; Devi</h2>
+  </section>
+
+  <footer>
+    <p>The Wedding of Ilham Ramadhan &amp; Devi Ajeng Juwitasari · 14.11.2026</p>
+    <p style="margin-top:8px;opacity:.7">Musik: &ldquo;Canon in D Major&rdquo; oleh Kevin MacLeod —
+      <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a></p>
+  </footer>
+</main>
+
+<script>
+  // ---------- Guest name from URL ?to=Name ----------
+  (function(){
+    var params = new URLSearchParams(location.search);
+    var to = params.get('to') || params.get('kepada');
+    if(to){ document.getElementById('guestName').textContent = decodeURIComponent(to.replace(/\+/g,' ')); }
+  })();
+
+  // ---------- Open invitation + music ----------
+  var cover = document.getElementById('cover');
+  var bgm = document.getElementById('bgm');
+  var musicBtn = document.getElementById('music-btn');
+
+  document.getElementById('openBtn').addEventListener('click', function(){
+    cover.classList.add('hide');
+    document.body.style.overflow = 'auto';
+    musicBtn.classList.add('show');
+    bgm.volume = 0.6;
+    bgm.play().then(function(){ musicBtn.classList.add('playing'); }).catch(function(){});
+    setTimeout(function(){ window.scrollTo({top:0,behavior:'instant'}); }, 50);
+  });
+  document.body.style.overflow = 'hidden';
+
+  musicBtn.addEventListener('click', function(){
+    if(bgm.paused){ bgm.play(); musicBtn.classList.add('playing'); }
+    else { bgm.pause(); musicBtn.classList.remove('playing'); }
+  });
+
+  // ---------- Scroll reveal ----------
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+  // ---------- Countdown ----------
+  var target = new Date('2026-11-14T09:00:00+07:00').getTime();
+  function tick(){
+    var now = Date.now(), diff = target - now;
+    if(diff < 0) diff = 0;
+    var d = Math.floor(diff/86400000),
+        h = Math.floor(diff%86400000/3600000),
+        m = Math.floor(diff%3600000/60000),
+        s = Math.floor(diff%60000/1000);
+    document.getElementById('cd-d').textContent = d;
+    document.getElementById('cd-h').textContent = h;
+    document.getElementById('cd-m').textContent = m;
+    document.getElementById('cd-s').textContent = s;
+  }
+  tick(); setInterval(tick, 1000);
+
+  // ---------- RSVP (stored locally in the browser) ----------
+  var form = document.getElementById('rsvpForm');
+  var KEY = 'rsvp_ilham_devi';
+  function loadWishes(){
+    var data = JSON.parse(localStorage.getItem(KEY) || '[]');
+    if(!data.length) return;
+    var box = document.getElementById('wishes');
+    var list = document.getElementById('wishList');
+    list.innerHTML = '';
+    data.slice().reverse().forEach(function(r){
+      if(!r.message) return;
+      var div = document.createElement('div');
+      div.className = 'wish';
+      div.innerHTML = '<div class="w-name">'+escapeHtml(r.name)+' · '+escapeHtml(r.attend)+'</div>'+escapeHtml(r.message);
+      list.appendChild(div);
+    });
+    if(list.children.length) box.style.display = 'block';
+  }
+  function escapeHtml(t){ return (t||'').replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var entry = {
+      name: form.name.value.trim(),
+      attend: form.attend.value,
+      guests: form.guests.value,
+      message: form.message.value.trim(),
+      at: new Date().toISOString()
+    };
+    var data = JSON.parse(localStorage.getItem(KEY) || '[]');
+    data.push(entry);
+    localStorage.setItem(KEY, JSON.stringify(data));
+    form.style.display = 'none';
+    document.getElementById('rsvpThanks').classList.add('show');
+    loadWishes();
+  });
+  loadWishes();
+</script>
+</body>
+</html>

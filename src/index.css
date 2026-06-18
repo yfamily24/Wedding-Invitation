@@ -1,20 +1,23 @@
 :root{
-  --green:#3a4a3f;
-  --green-soft:#5d7264;
-  --gold:#b08d57;
-  --gold-light:#cbb088;
-  --cream:#f7f3ec;
-  --cream-2:#efe7da;
-  --ink:#33352f;
-  --rose:#b98a7d;
-  --shadow:rgba(58,74,63,.18);
+  /* Palet selaras dengan border mawar pink di atas ivory.
+     "green"/"green-soft" disimpan namanya, kini bernuansa dusty-rose. */
+  --green:#95616b;        /* dusty rose — bagian gelap (couple, countdown, rsvp) */
+  --green-soft:#b18792;   /* dusty rose lembut */
+  --gold:#c2a06a;         /* emas hangat */
+  --gold-light:#ddc09a;
+  --cream:#fdf8f5;        /* ivory / hampir putih */
+  --cream-2:#f7ece8;
+  --ink:#574449;
+  --rose:#d98a96;         /* aksen pink mawar */
+  --blush:#f0b8c0;        /* pink muda */
+  --shadow:rgba(120,80,90,.18);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{
   font-family:'Montserrat',sans-serif;
   color:var(--ink);
-  background:var(--green);
+  background:var(--cream) url('/assets/bg-floral.png') center top / cover no-repeat fixed;
   line-height:1.7;
   overflow-x:hidden;
 }
@@ -42,22 +45,26 @@ body.locked{overflow:hidden}
 #cover{
   position:fixed;inset:0;z-index:1000;
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
-  padding:40px 24px;color:var(--cream);
-  background:
-    linear-gradient(rgba(30,40,34,.62),rgba(30,40,34,.72)),
-    radial-gradient(120% 120% at 50% 0%, #4c6052 0%, #2f3d34 60%, #243029 100%);
+  padding:40px 24px;color:var(--ink);
+  background:var(--cream) url('/assets/bg-floral.png') center / cover no-repeat;
   transition:opacity 1s ease, visibility 1s;
 }
 #cover.hide{opacity:0;visibility:hidden;pointer-events:none}
-.cover-frame{border:1px solid rgba(203,176,136,.45);padding:48px 30px;border-radius:6px;max-width:520px;width:100%}
-.cover-eyebrow{letter-spacing:5px;font-size:11px;text-transform:uppercase;color:var(--gold-light);margin-bottom:18px}
-.cover-names{font-size:clamp(52px,16vw,92px);color:#fff;margin:6px 0}
+.cover-frame{
+  border:1px solid rgba(217,138,150,.35);
+  background:rgba(255,253,251,.55);
+  backdrop-filter:blur(2px);
+  box-shadow:0 20px 50px rgba(120,80,90,.14);
+  padding:48px 30px;border-radius:6px;max-width:520px;width:100%;
+}
+.cover-eyebrow{letter-spacing:5px;font-size:11px;text-transform:uppercase;color:var(--rose);margin-bottom:18px}
+.cover-names{font-size:clamp(52px,16vw,92px);color:var(--green);margin:6px 0}
 .cover-names .cn-line{display:block;line-height:1.05}
-.cover-names .cn-amp{display:block;font-size:.5em;color:var(--gold-light);margin:6px 0}
-.cover-date{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:3px;margin-top:8px;color:var(--cream)}
+.cover-names .cn-amp{display:block;font-size:.5em;color:var(--gold);margin:6px 0}
+.cover-date{font-family:'Cormorant Garamond',serif;font-size:19px;letter-spacing:3px;margin-top:8px;color:var(--green-soft)}
 .guest-box{margin:30px 0 26px}
-.guest-box .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold-light)}
-.guest-box .name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#fff;margin-top:4px}
+.guest-box .lbl{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--rose)}
+.guest-box .name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--green);margin-top:4px}
 
 /* ============ page ============ */
 main{max-width:560px;margin:0 auto;background:var(--cream);box-shadow:0 0 60px rgba(0,0,0,.4);overflow:hidden}
@@ -120,6 +127,16 @@ section{padding:80px 30px;position:relative}
 
 footer{background:var(--green);color:var(--cream);text-align:center;padding:30px 20px;font-size:11px;letter-spacing:1px}
 footer a{color:var(--gold-light)}
+
+/* back to cover */
+#back-btn{
+  position:fixed;left:18px;bottom:18px;z-index:1100;width:50px;height:50px;border-radius:50%;
+  border:1px solid var(--gold);background:var(--green);color:var(--gold-light);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(110,75,84,.35);
+  transition:.25s;
+}
+#back-btn:hover{background:var(--gold);color:#fff}
+#back-btn svg{width:22px;height:22px}
 
 /* music toggle */
 #music-btn{

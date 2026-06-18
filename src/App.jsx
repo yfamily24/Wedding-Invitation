@@ -46,6 +46,11 @@ export default function App() {
     window.scrollTo({ top: 0 })
   }
 
+  const backToCover = () => {
+    setOpened(false)
+    window.scrollTo({ top: 0 })
+  }
+
   const toggleMusic = () => {
     const audio = audioRef.current
     if (!audio) return
@@ -63,6 +68,14 @@ export default function App() {
       <Cover guestName={guestName} opened={opened} onOpen={openInvitation} />
 
       <audio ref={audioRef} loop preload="auto" src={config.music.src} />
+      {opened && (
+        <button id="back-btn" onClick={backToCover} aria-label="Kembali ke sampul">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12" />
+            <polyline points="12 19 5 12 12 5" />
+          </svg>
+        </button>
+      )}
       {opened && <MusicButton playing={playing} onToggle={toggleMusic} />}
 
       <main>

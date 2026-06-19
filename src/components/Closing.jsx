@@ -12,7 +12,7 @@ export default function Closing() {
         untuk memberikan doa restu.
       </p>
       <Divider />
-      <p className="serif reveal" style={{ fontSize: 18, color: 'var(--green-soft)' }}>
+      <p className="serif reveal" style={{ fontSize: 18, color: 'var(--cream)' }}>
         Wassalamu'alaikum Warahmatullahi Wabarakatuh
       </p>
       <p className="reveal" style={{ marginTop: 30, fontSize: 13, letterSpacing: 3, color: 'var(--gold)' }}>

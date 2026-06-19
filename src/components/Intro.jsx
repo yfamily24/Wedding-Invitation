@@ -4,6 +4,7 @@ import Divider from './Divider'
 export default function Intro() {
   return (
     <section id="intro" className="center">
+      <img className="welcome-photo reveal" src="assets/welcome_photo.jpg" alt="Ilham & Devi" />
       <p className="basmalah serif">بِسْمِ اللّٰهِ الرَّحْمٰنِ الرَّحِيْمِ</p>
       <p className="eyebrow">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
       <Divider />

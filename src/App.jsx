@@ -10,6 +10,7 @@ import Events from './components/Events'
 import Countdown from './components/Countdown'
 import Location from './components/Location'
 import Rsvp from './components/Rsvp'
+import Gallery from './components/Gallery'
 import Closing from './components/Closing'
 import Footer from './components/Footer'
 
@@ -72,6 +73,7 @@ export default function App() {
         <Countdown />
         <Location />
         <Rsvp />
+        <Gallery />
         <Closing />
         <Footer />
       </main>

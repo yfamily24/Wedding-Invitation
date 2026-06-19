@@ -1,22 +1,45 @@
 import { useState } from 'react'
+import { config } from '../config'
 import Divider from './Divider'
 
 const KEY = 'rsvp_ilham_devi'
 const load = () => JSON.parse(localStorage.getItem(KEY) || '[]')
+const ENDPOINT = config.rsvp?.endpoint || ''
 
 export default function Rsvp() {
   const [entries, setEntries] = useState(load)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
   const [form, setForm] = useState({ name: '', attend: '', guests: '1', message: '' })
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
+    setSending(true)
     const entry = { ...form, at: new Date().toISOString() }
+
+    // Simpan lokal supaya tamu langsung melihat ucapannya tampil.
     const next = [...load(), entry]
     localStorage.setItem(KEY, JSON.stringify(next))
     setEntries(next)
+
+    // Kirim ke Google Sheets lewat Apps Script (jika endpoint sudah diisi).
+    // mode:'no-cors' + text/plain menghindari preflight CORS Apps Script.
+    if (ENDPOINT) {
+      try {
+        await fetch(ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(entry),
+        })
+      } catch {
+        // Diabaikan: data tetap aman tersimpan lokal di perangkat tamu.
+      }
+    }
+
+    setSending(false)
     setSubmitted(true)
   }
 
@@ -29,9 +52,11 @@ export default function Rsvp() {
         RSVP
       </h2>
       <Divider />
-      <p className="muted" style={{ color: 'var(--cream)', opacity: 0.85, fontSize: 14 }}>
-        Mohon konfirmasi kehadiran Anda. Doa &amp; ucapan juga sangat kami nantikan.
-      </p>
+      {!submitted && (
+        <p className="muted" style={{ color: 'var(--cream)', opacity: 0.85, fontSize: 14 }}>
+          Mohon konfirmasi kehadiran Anda. Doa &amp; ucapan juga sangat kami nantikan.
+        </p>
+      )}
 
       {!submitted ? (
         <form className="form" onSubmit={handleSubmit}>
@@ -56,7 +81,9 @@ export default function Rsvp() {
           <label htmlFor="rMsg">Ucapan &amp; Doa</label>
           <textarea id="rMsg" name="message" placeholder="Tuliskan ucapan & doa restu Anda..." value={form.message} onChange={update} />
 
-          <button className="btn btn-solid" type="submit">Kirim Konfirmasi</button>
+          <button className="btn btn-solid" type="submit" disabled={sending}>
+            {sending ? 'Mengirim...' : 'Kirim Konfirmasi'}
+          </button>
         </form>
       ) : (
         <div className="rsvp-thanks">

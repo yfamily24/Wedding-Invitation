@@ -51,6 +51,13 @@ export const config = {
     licenseLabel: 'CC BY 4.0',
   },
 
+  rsvp: {
+    // Web App URL hasil deploy Google Apps Script (berakhiran /exec).
+    // Pastikan deployment di-set "Who has access: Anyone".
+    endpoint:
+      'https://script.google.com/macros/s/AKfycbzvxWA1aChoEI_dRqOiRp0BR47ZvuUJncJR1cWZplGCIqLTtn8lEC0vWJmMswe8rxBA3Q/exec',
+  },
+
   verse: {
     text:
       'Dan di antara tanda-tanda kekuasaan-Nya ialah Dia menciptakan untukmu pasangan hidup dari jenismu sendiri, supaya kamu cenderung dan merasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih dan sayang.',

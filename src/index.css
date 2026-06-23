@@ -122,6 +122,8 @@ section{padding:80px 30px;position:relative}
   background:rgba(255,255,255,.06);color:#fff;font-family:'Montserrat',sans-serif;font-size:14px;
 }
 .form textarea{resize:vertical;min-height:80px}
+/* honeypot anti-spam: tak terlihat & tak terjangkau manusia, tapi tetap di DOM */
+.hp-field{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}
 /* Daftar dropdown terbuka: teks gelap di atas putih agar selalu terbaca */
 .form select option{color:var(--ink);background:#fff}
 .form input::placeholder,.form textarea::placeholder{color:rgba(247,243,236,.45)}

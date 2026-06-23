@@ -5,19 +5,27 @@ import Divider from './Divider'
 const KEY = 'rsvp_ilham_devi'
 const load = () => JSON.parse(localStorage.getItem(KEY) || '[]')
 const ENDPOINT = config.rsvp?.endpoint || ''
+const TOKEN = config.rsvp?.token || ''
 
 export default function Rsvp() {
   const [entries, setEntries] = useState(load)
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
-  const [form, setForm] = useState({ name: '', attend: '', guests: '1', message: '' })
+  // "website" = honeypot tersembunyi; tamu asli tak mengisinya, bot mengisinya.
+  const [form, setForm] = useState({ name: '', attend: '', guests: '1', message: '', website: '' })
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setSending(true)
-    const entry = { ...form, at: new Date().toISOString() }
+    const entry = {
+      name: form.name,
+      attend: form.attend,
+      guests: form.guests,
+      message: form.message,
+      at: new Date().toISOString(),
+    }
 
     // Simpan lokal supaya tamu langsung melihat ucapannya tampil.
     const next = [...load(), entry]
@@ -26,13 +34,14 @@ export default function Rsvp() {
 
     // Kirim ke Google Sheets lewat Apps Script (jika endpoint sudah diisi).
     // mode:'no-cors' + text/plain menghindari preflight CORS Apps Script.
+    // token = anti-spam; website = honeypot (dikosongkan tamu asli).
     if (ENDPOINT) {
       try {
         await fetch(ENDPOINT, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify(entry),
+          body: JSON.stringify({ ...entry, token: TOKEN, website: form.website }),
         })
       } catch {
         // Diabaikan: data tetap aman tersimpan lokal di perangkat tamu.
@@ -60,6 +69,18 @@ export default function Rsvp() {
 
       {!submitted ? (
         <form className="form" onSubmit={handleSubmit}>
+          {/* Honeypot: tersembunyi dari manusia; jika terisi -> ditolak server */}
+          <input
+            type="text"
+            name="website"
+            className="hp-field"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={form.website}
+            onChange={update}
+          />
+
           <label htmlFor="rName">Nama</label>
           <input id="rName" name="name" type="text" placeholder="Nama lengkap Anda" required value={form.name} onChange={update} />
 

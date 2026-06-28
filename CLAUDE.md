@@ -27,16 +27,17 @@ Undangan pernikahan digital **Ilham Ramadhan & Devi Ajeng Juwitasari** — Sabtu
 - **Edit konten lewat `src/config.js`**, bukan hard-code di komponen.
 
 ## RSVP → Google Sheets (+ anti-spam)
-- Form `Rsvp.jsx` POST via `fetch` `mode:'no-cors'` (`text/plain`) ke Google Apps Script Web App di `config.rsvp.endpoint`, ditambah `token` + honeypot `website`. Data juga disimpan lokal (localStorage) untuk tampilan ucapan per-perangkat.
-- Kode Apps Script: `scripts/rsvp-apps-script.gs` (tempel ke Extensions→Apps Script milik spreadsheet, deploy Web App "Anyone"). Berisi: cek token, honeypot, filter konten (link/kata judi → kolom `Flag`=`SPAM?`), kolom `Approved` (moderasi, default FALSE), serta `doGet ?wishes=1` (JSONP) untuk fondasi dinding publik.
-- `TOKEN` di `.gs` HARUS sama dengan `config.rsvp.token`.
+- Form `Rsvp.jsx` POST via `fetch` `mode:'no-cors'` (`text/plain`) ke Google Apps Script Web App di `config.rsvp.endpoint`, ditambah `token` + honeypot `subjek` (nama netral, bukan `website`/`url`/`email`, supaya tak ke-autofill browser & menolak tamu asli).
+- Dinding "Ucapan & Doa" dibaca **dari spreadsheet** lewat JSONP (`doGet ?wishes=1&callback=...`, hanya baris `Approved=TRUE`), bukan lagi localStorage. Tampil dengan **paging 5 ucapan/halaman**.
+- Kode Apps Script: `scripts/rsvp-apps-script.gs` (tempel ke Extensions→Apps Script milik spreadsheet, deploy Web App "Anyone"). Berisi: cek token, honeypot, filter konten (link/kata judi → kolom `Flag`=`SPAM?`), kolom `Approved` (moderasi, default FALSE), serta `doGet ?wishes=1` (JSONP) untuk dinding ucapan publik.
+- `TOKEN` di `.gs` HARUS sama dengan `config.rsvp.token`. Begitu pula **nama honeypot `subjek`** harus sama di `Rsvp.jsx` dan `.gs`; ganti keduanya bersamaan lalu **deploy ulang versi baru** Apps Script.
 - Karena `no-cors`, browser tak bisa baca balasan — verifikasi keberhasilan dengan melihat baris di spreadsheet.
 
 ## TODO / yang perlu dilanjutkan
 1. **Merge `security` → `main`** agar anti-spam masuk ke produksi (Vercel deploy dari `main`). Lewat PR di GitHub.
-2. **Hapus baris uji "TES ..."** di spreadsheet (sisa pengujian anti-spam).
+2. **Hapus baris uji** di spreadsheet (sisa pengujian anti-spam: `TES ...`, `SECTEST...`, `PROBE...`, serta baris `Tes 1–23` yang terlanjur `Approved=TRUE`).
 3. **Section "amplop digital"** (hadiah/nomor rekening) — diminta user, dikerjakan nanti saat user siap. Rencana: komponen baru antara Gallery dan Closing, isi nama bank + no. rekening + tombol salin, recolor sesuai tema branch aktif.
-4. (Opsional) Dinding ucapan publik — baca dari `?wishes=1` (hanya yang `Approved=TRUE`).
+4. ✅ **Selesai** — Dinding ucapan publik baca dari `?wishes=1` (hanya `Approved=TRUE`) + paging 5/halaman.
 
 ## Catatan lingkungan
 - Windows. Error `git pull` "revocation status is unknown" pernah muncul di salah satu laptop (schannel TLS) → perbaiki dengan `git config --global http.sslBackend openssl` di mesin itu (per-mesin, tidak ikut repo).

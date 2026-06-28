@@ -10,8 +10,9 @@ export default function Rsvp() {
   const [entries, setEntries] = useState([])
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
-  // "website" = honeypot tersembunyi; tamu asli tak mengisinya, bot mengisinya.
-  const [form, setForm] = useState({ name: '', attend: '', guests: '1', message: '', website: '' })
+  // "subjek" = honeypot tersembunyi; tamu asli tak mengisinya, bot mengisinya.
+  // Nama netral (bukan "website"/"url"/"email") agar tak dikenali autofill browser.
+  const [form, setForm] = useState({ name: '', attend: '', guests: '1', message: '', subjek: '' })
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
@@ -48,14 +49,14 @@ export default function Rsvp() {
 
     // Kirim ke Google Sheets lewat Apps Script (jika endpoint sudah diisi).
     // mode:'no-cors' + text/plain menghindari preflight CORS Apps Script.
-    // token = anti-spam; website = honeypot (dikosongkan tamu asli).
+    // token = anti-spam; subjek = honeypot (dikosongkan tamu asli).
     if (ENDPOINT) {
       try {
         await fetch(ENDPOINT, {
           method: 'POST',
           mode: 'no-cors',
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ ...entry, token: TOKEN, website: form.website }),
+          body: JSON.stringify({ ...entry, token: TOKEN, subjek: form.subjek }),
         })
       } catch {
         // Diabaikan: karena no-cors, kegagalan jaringan tak bisa dibaca di sini.
@@ -93,12 +94,12 @@ export default function Rsvp() {
           {/* Honeypot: tersembunyi dari manusia; jika terisi -> ditolak server */}
           <input
             type="text"
-            name="website"
+            name="subjek"
             className="hp-field"
             tabIndex={-1}
             autoComplete="off"
             aria-hidden="true"
-            value={form.website}
+            value={form.subjek}
             onChange={update}
           />
 

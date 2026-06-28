@@ -1,20 +1,39 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { config } from '../config'
 import Divider from './Divider'
 
-const KEY = 'rsvp_ilham_devi'
-const load = () => JSON.parse(localStorage.getItem(KEY) || '[]')
 const ENDPOINT = config.rsvp?.endpoint || ''
 const TOKEN = config.rsvp?.token || ''
 
 export default function Rsvp() {
-  const [entries, setEntries] = useState(load)
+  // Ucapan yang tampil dibaca dari spreadsheet (hanya baris Approved = TRUE).
+  const [entries, setEntries] = useState([])
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
   // "website" = honeypot tersembunyi; tamu asli tak mengisinya, bot mengisinya.
   const [form, setForm] = useState({ name: '', attend: '', guests: '1', message: '', website: '' })
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
+
+  // Ambil ucapan yang sudah di-approve via JSONP. Apps Script tak mengirim
+  // header CORS, jadi dibaca lewat <script> ?wishes=1&callback=... .
+  useEffect(() => {
+    if (!ENDPOINT) return
+    const cb = `wishesCb_${Date.now()}`
+    const script = document.createElement('script')
+    const cleanup = () => {
+      delete window[cb]
+      script.remove()
+    }
+    window[cb] = (data) => {
+      if (data && Array.isArray(data.wishes)) setEntries(data.wishes)
+      cleanup()
+    }
+    script.onerror = cleanup
+    script.src = `${ENDPOINT}?wishes=1&callback=${cb}`
+    document.body.appendChild(script)
+    return cleanup
+  }, [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -26,11 +45,6 @@ export default function Rsvp() {
       message: form.message,
       at: new Date().toISOString(),
     }
-
-    // Simpan lokal supaya tamu langsung melihat ucapannya tampil.
-    const next = [...load(), entry]
-    localStorage.setItem(KEY, JSON.stringify(next))
-    setEntries(next)
 
     // Kirim ke Google Sheets lewat Apps Script (jika endpoint sudah diisi).
     // mode:'no-cors' + text/plain menghindari preflight CORS Apps Script.
@@ -44,7 +58,7 @@ export default function Rsvp() {
           body: JSON.stringify({ ...entry, token: TOKEN, website: form.website }),
         })
       } catch {
-        // Diabaikan: data tetap aman tersimpan lokal di perangkat tamu.
+        // Diabaikan: karena no-cors, kegagalan jaringan tak bisa dibaca di sini.
       }
     }
 
@@ -53,6 +67,13 @@ export default function Rsvp() {
   }
 
   const wishes = entries.filter((r) => r.message).reverse()
+
+  // Paging dinding ucapan: 5 ucapan per halaman.
+  const PER_PAGE = 5
+  const [page, setPage] = useState(1)
+  const totalPages = Math.max(1, Math.ceil(wishes.length / PER_PAGE))
+  const currentPage = Math.min(page, totalPages)
+  const pageWishes = wishes.slice((currentPage - 1) * PER_PAGE, currentPage * PER_PAGE)
 
   return (
     <section id="rsvp">
@@ -116,14 +137,40 @@ export default function Rsvp() {
       {wishes.length > 0 && (
         <div className="wishes">
           <h4>Ucapan &amp; Doa</h4>
-          {wishes.map((r, i) => (
-            <div className="wish" key={i}>
+          {pageWishes.map((r, i) => (
+            <div className="wish" key={(currentPage - 1) * PER_PAGE + i}>
               <div className="w-name">
-                {r.name} · {r.attend}
+                {r.name}
               </div>
               {r.message}
             </div>
           ))}
+
+          {totalPages > 1 && (
+            <div className="wishes-pager">
+              <button
+                type="button"
+                className="pager-btn"
+                onClick={() => setPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage <= 1}
+                aria-label="Halaman sebelumnya"
+              >
+                ‹
+              </button>
+              <span className="pager-info">
+                Halaman {currentPage} / {totalPages}
+              </span>
+              <button
+                type="button"
+                className="pager-btn"
+                onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                disabled={currentPage >= totalPages}
+                aria-label="Halaman berikutnya"
+              >
+                ›
+              </button>
+            </div>
+          )}
         </div>
       )}
     </section>

@@ -56,6 +56,8 @@ export const config = {
     // Pastikan deployment di-set "Who has access: Anyone".
     endpoint:
       'https://script.google.com/macros/s/AKfycbzvxWA1aChoEI_dRqOiRp0BR47ZvuUJncJR1cWZplGCIqLTtn8lEC0vWJmMswe8rxBA3Q/exec',
+    // Token rahasia anti-spam — HARUS sama dengan TOKEN di scripts/rsvp-apps-script.gs
+    token: 'ilhamdevi-2026-r5v9',
   },
 
   verse: {

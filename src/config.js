@@ -60,26 +60,24 @@ export const config = {
     token: 'ilhamdevi-2026-r5v9',
   },
 
-  chipLogo:'/assets/chip-logo.png',
-
   gift:{
     ilham:{
       logo_detail: 'BCA',
-      logo: '/assets/logo-bca.png',
+      logo: 'assets/logo-bca.png',
       detail:'8692223003',
       name: 'Ilham Ramadhan',
       type: 'Bank'
     },
     devi:{
       logo_detail: 'BTN',
-      logo: '/assets/logo-btn.png',
+      logo: 'assets/logo-btn.png',
       detail:'4901500116135',
       name: 'Devi Ajeng Juwitasari',
       type: 'Bank'
     },
     rumah:{
       logo_detail: 'Gift',
-      logo: '/assets/logo-gift.png',
+      logo: 'assets/logo-gift.png',
       detail:'Jl PSM KPAD PINDAD UTARA K2023 RT.02/RW.10, Kebun Jayanti, Kec. Kiaracondong, Kota Bandung, Jawa Barat 40285',
       name: 'Devi Ajeng Juwitasari & Ilham Ramadhan',
       type: 'Address'

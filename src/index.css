@@ -113,6 +113,126 @@ section{padding:80px 30px;position:relative}
 .map-wrap iframe{display:block;width:100%;height:280px;border:0}
 .addr{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--green);max-width:420px;margin:0 auto 22px}
 
+#bank-account{background:var(--green);color:var(--cream);text-align:center}
+/* Kartu rekening - pakai variabel warna dari index.css */
+.bank-card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1.75 / 1;
+    margin: 28px auto 0;
+    padding: 20px 24px;
+    box-sizing: border-box;
+    text-align: left;
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-2) 100%);
+    border: 1px solid var(--gold-light);
+    border-radius: 20px;
+    box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.55);
+}
+
+.bank-card__logo {
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    height: 70px;
+    width: auto;
+    object-fit: contain;
+}
+
+.bank-card__chip {
+    position: absolute;
+    top: 38%;
+    left: 24px;
+    width: 48px;
+    height: 36px;
+    border-radius: 7px;
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    box-shadow: inset 0 0 0 1px rgba(60, 55, 35, 0.2);
+}
+
+.bank-card__number {
+    position: absolute;
+    left: 24px;
+    bottom: 64px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    color: var(--green);
+}
+
+.bank-card__name {
+    position: absolute;
+    left: 24px;
+    bottom: 34px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-soft);
+}
+
+.bank-card__copy {
+    position: absolute;
+    right: 20px;
+    bottom: 18px;
+    padding: 8px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.35s;
+}
+
+.bank-card__copy:hover {
+    background: var(--green);
+    border-color: var(--green);
+}
+
+.gift__card {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 1.4 / 1;
+    margin: 28px auto 0;
+    padding: 20px 24px;
+    box-sizing: border-box;
+    text-align: left;
+    color: var(--ink);
+    background: linear-gradient(135deg, var(--cream) 0%, var(--cream-2) 100%);
+    border: 1px solid var(--gold-light);
+    border-radius: 20px;
+    box-shadow: 0 16px 40px -16px rgba(0, 0, 0, 0.55);
+}
+
+.gift__logo {
+    top: 18px;
+    height: 50px;
+    width: 50px;
+    object-fit: contain;
+}
+
+.gift__img {
+    width: auto;
+    height: 50px;
+    padding-bottom: 10px;
+    object-fit: contain;
+}
+
+.gift__name {
+    left: 24px;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--green-soft);
+    padding-top:10px;
+}
+
 #rsvp{background:var(--green);color:var(--cream);text-align:center}
 #rsvp .eyebrow{color:var(--gold-light)}
 .form{max-width:400px;margin:26px auto 0;text-align:left}
@@ -139,12 +259,12 @@ section{padding:80px 30px;position:relative}
 .wishes-pager .pager-btn:disabled{opacity:.35;cursor:default}
 .wishes-pager .pager-info{color:var(--cream);font-size:12px;letter-spacing:1px}
 
-#closing{background:var(--green);color:var(--cream);text-align:center}
-#closing .eyebrow{color:var(--gold-light)}
-.closing-names{font-size:clamp(46px,13vw,72px);color:#fff;margin-top:22px}
+#closing{background:var(--cream);text-align:center}
+#closing .eyebrow{color:var(--green-soft)}
+.closing-names{font-size:clamp(46px,13vw,72px);color:#000000;margin-top:22px}
 
-footer{background:var(--green);color:var(--cream);text-align:center;padding:30px 20px;font-size:11px;letter-spacing:1px}
-footer a{color:var(--gold-light)}
+footer{background:var(--cream);text-align:center;padding:30px 20px;font-size:11px;letter-spacing:1px}
+/* footer a{color:var(--gold-light)} */
 
 /* music toggle */
 #music-btn{

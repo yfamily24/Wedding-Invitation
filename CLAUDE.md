@@ -36,7 +36,7 @@ Undangan pernikahan digital **Ilham Ramadhan & Devi Ajeng Juwitasari** — Sabtu
 ## TODO / yang perlu dilanjutkan
 1. **Merge `security` → `main`** agar anti-spam masuk ke produksi (Vercel deploy dari `main`). Lewat PR di GitHub.
 2. **Hapus baris uji** di spreadsheet (sisa pengujian anti-spam: `TES ...`, `SECTEST...`, `PROBE...`, serta baris `Tes 1–23` yang terlanjur `Approved=TRUE`).
-3. **Section "amplop digital"** (hadiah/nomor rekening) — diminta user, dikerjakan nanti saat user siap. Rencana: komponen baru antara Gallery dan Closing, isi nama bank + no. rekening + tombol salin, recolor sesuai tema branch aktif.
+3. **Section "amplop digital"** (hadiah/nomor rekening) — diminta user, dikerjakan nanti saat user siap. Rencana: komponen baru antara Gallery dan Closing, recolor sesuai tema branch aktif. **Rekomendasi tampilan (disepakati):** tampilkan **nomor rekening sebagai teks + tombol "Salin nomor"** (frictionless, minim salah ketik) DAN/ATAU **QR (QRIS / QR transfer bank) sebagai gambar** untuk yang mau scan. Hindari menaruh nomor sebagai foto-angka polos: keamanannya tipis (OCR mudah, lagipula no. rekening memang untuk dibagikan) tapi menghapus kemampuan salin → rawan salah transfer. Kalau butuh elemen visual demi "keamanan", QR-lah jawabannya, bukan foto angka. (Opsional anti-scraping: nomor teks baru muncul setelah klik "Lihat rekening".)
 4. ✅ **Selesai** — Dinding ucapan publik baca dari `?wishes=1` (hanya `Approved=TRUE`) + paging 5/halaman.
 
 ## Catatan lingkungan

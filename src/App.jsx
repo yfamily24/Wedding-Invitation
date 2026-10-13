@@ -18,7 +18,8 @@ import Footer from './components/Footer'
 export default function App() {
   const [opened, setOpened] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const audioRef = useRef(null)
+  const playerRef = useRef(null)
+  const readyRef = useRef(false)
 
   // Guest name from URL: ?to=Nama  (or ?kepada=Nama)
   const guestName = useMemo(() => {
@@ -35,28 +36,63 @@ export default function App() {
   // Re-scan reveal targets once the invitation is opened.
   useReveal([opened])
 
+  // Load YouTube IFrame API + create hidden player on mount.
+  useEffect(() => {
+    const createPlayer = () => {
+      playerRef.current = new window.YT.Player('yt-player', {
+        videoId: config.music.youtubeId,
+        width: '200',
+        height: '200',
+        playerVars: { controls: 0, playsinline: 1, rel: 0, disablekb: 1 },
+        events: {
+          onReady: () => {
+            readyRef.current = true
+          },
+          onStateChange: (e) => {
+            // 1 = playing, 2 = paused, 0 = ended
+            if (e.data === 1) setPlaying(true)
+            if (e.data === 2) setPlaying(false)
+            if (e.data === 0) {
+              e.target.seekTo(0)
+              e.target.playVideo() // loop
+            }
+          },
+          onError: () => setPlaying(false), // mis. embed dinonaktifkan pemilik video
+        },
+      })
+    }
+
+    if (window.YT && window.YT.Player) {
+      createPlayer()
+    } else {
+      const tag = document.createElement('script')
+      tag.src = 'https://www.youtube.com/iframe_api'
+      document.head.appendChild(tag)
+      window.onYouTubeIframeAPIReady = createPlayer
+    }
+
+    return () => {
+      if (playerRef.current && playerRef.current.destroy) playerRef.current.destroy()
+    }
+  }, [])
+
   const openInvitation = () => {
     setOpened(true)
-    const audio = audioRef.current
-    if (audio) {
-      audio.volume = 0.6
-      audio
-        .play()
-        .then(() => setPlaying(true))
-        .catch(() => setPlaying(false))
+    const player = playerRef.current
+    if (player && readyRef.current) {
+      player.setVolume(60)
+      player.playVideo()
     }
     window.scrollTo({ top: 0 })
   }
 
   const toggleMusic = () => {
-    const audio = audioRef.current
-    if (!audio) return
-    if (audio.paused) {
-      audio.play()
-      setPlaying(true)
+    const player = playerRef.current
+    if (!player || !readyRef.current) return
+    if (player.getPlayerState() === 1) {
+      player.pauseVideo()
     } else {
-      audio.pause()
-      setPlaying(false)
+      player.playVideo()
     }
   }
 
@@ -64,7 +100,11 @@ export default function App() {
     <>
       <Cover guestName={guestName} opened={opened} onOpen={openInvitation} />
 
-      <audio ref={audioRef} loop preload="auto" src={config.music.src} />
+      {/* Player YouTube: ditaruh di luar layar, bukan display:none */}
+      <div style={{ position: 'fixed', left: -9999, top: 0, width: 200, height: 200 }}>
+        <div id="yt-player" />
+      </div>
+
       {opened && <MusicButton playing={playing} onToggle={toggleMusic} />}
 
       <main>

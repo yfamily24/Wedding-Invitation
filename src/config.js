@@ -44,11 +44,11 @@ export const config = {
   },
 
   music: {
-    src: 'assets/song.mp3',
-    title: 'Canon in D Major',
-    artist: 'Kevin MacLeod',
-    licenseUrl: 'https://creativecommons.org/licenses/by/4.0/',
-    licenseLabel: 'CC BY 4.0',
+    youtubeId: '9_9ADpx5FHE',
+    title: 'The Way You Look at Me',
+    artist: 'Christian Bautista',
+    licenseUrl: 'https://www.youtube.com/watch?v=9_9ADpx5FHE',
+    licenseLabel: 'YouTube',
   },
 
   rsvp: {

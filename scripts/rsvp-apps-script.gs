@@ -34,7 +34,9 @@ function doPost(e) {
       return json({ result: 'ignored' }); // diam-diam diabaikan
     }
     // --- Lapisan 2: honeypot (field tersembunyi; kalau terisi = bot) ---
-    if (data.website) {
+    // Nama field "subjek" HARUS sama dengan honeypot di Rsvp.jsx (nama netral
+    // agar tak dikenali autofill browser). Ganti keduanya bersamaan.
+    if (data.subjek) {
       return json({ result: 'ignored' });
     }
 

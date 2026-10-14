@@ -4,7 +4,7 @@
 export const config = {
   groom: {
     name: 'Ilham Ramadhan',
-    father: 'Ramadi Yudo',
+    father: 'Ramadi Yudo (Alm.)',
     mother: 'Ima Suryati',
   },
   bride: {

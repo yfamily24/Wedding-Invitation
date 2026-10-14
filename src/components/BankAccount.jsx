@@ -43,9 +43,12 @@ function BankCard({ logo_detail, logo, detail, name, type }) {
                 {/* <img className="bank-card__chip" src={config.chipLogo} alt={logo_detail} /> */}
                 <div className="bank-card__number">{detail}</div>
                 <div className="bank-card__name">{name}</div>
-                <button type="button" className="bank-card__copy" onClick={handleCopy}>
-                    {copied ? 'Copied!' : 'Copy'}
-                </button>
+                <div>
+                    <button type="button" className="bank-card__copy" onClick={handleCopy}>
+                        {copied ? 'Copied!' : 'Copy'}
+                    </button>
+                </div>
+                
             </div>
         );
         

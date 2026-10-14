@@ -16,9 +16,7 @@ export default function Rsvp() {
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  // Ambil ucapan yang sudah di-approve via JSONP. Apps Script tak mengirim
-  // header CORS, jadi dibaca lewat <script> ?wishes=1&callback=... .
-  useEffect(() => {
+  const loadWishes = () => {
     if (!ENDPOINT) return
     const cb = `wishesCb_${Date.now()}`
     const script = document.createElement('script')
@@ -34,7 +32,10 @@ export default function Rsvp() {
     script.src = `${ENDPOINT}?wishes=1&callback=${cb}`
     document.body.appendChild(script)
     return cleanup
-  }, [])
+  }
+  // Ambil ucapan yang sudah di-approve via JSONP. Apps Script tak mengirim
+  // header CORS, jadi dibaca lewat <script> ?wishes=1&callback=... .
+  useEffect(() => loadWishes(), [])
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -65,6 +66,8 @@ export default function Rsvp() {
 
     setSending(false)
     setSubmitted(true)
+    setPage(1)
+    loadWishes()
   }
 
   const wishes = entries.filter((r) => r.message).reverse()

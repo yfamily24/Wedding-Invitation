@@ -233,6 +233,25 @@ section{padding:80px 30px;position:relative}
     padding-top:10px;
 }
 
+.gift-card{
+  display:flex;
+  justify-content:right;
+}
+
+.gift-card__btn{
+    padding: 8px 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--gold);
+    border: 1px solid var(--gold);
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.35s;
+}
+
 #rsvp{background:var(--green);color:var(--cream);text-align:center}
 #rsvp .eyebrow{color:var(--gold-light)}
 .form{max-width:400px;margin:26px auto 0;text-align:left}

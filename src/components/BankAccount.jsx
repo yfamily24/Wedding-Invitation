@@ -31,9 +31,12 @@ function BankCard({ logo_detail, logo, detail, name, type }) {
                     <br/>
                     {detail}
                 </div>
-                <button type="button" className="bank-card__copy" onClick={handleCopy}>
-                    {copied ? 'Copied!' : 'Copy'}
-                </button>
+                <div className="gift-card">
+                    <button type="button" className="gift-card__btn" onClick={handleCopy}>
+                        {copied ? 'Copied!' : 'Copy'}
+                    </button>
+                </div>
+                
             </div>
         );
     }else if(type === 'Bank'){

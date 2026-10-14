@@ -236,6 +236,7 @@ section{padding:80px 30px;position:relative}
 .gift-card{
   display:flex;
   justify-content:right;
+  padding-top:20px;
 }
 
 .gift-card__btn{

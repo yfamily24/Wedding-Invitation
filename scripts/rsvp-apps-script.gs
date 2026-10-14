@@ -29,6 +29,8 @@ function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
 
+    var canBeShown = true;
+
     // --- Lapisan 1: token rahasia (tolak bot yg tembak URL langsung) ---
     if (data.token !== TOKEN) {
       return json({ result: 'ignored' }); // diam-diam diabaikan
@@ -43,18 +45,22 @@ function doPost(e) {
     // --- Lapisan 3: filter konten (link / kata judi-phishing) ---
     var flag = (isSpam(data.message) || isSpam(data.name)) ? 'SPAM?' : '';
 
+    if(flag == 'SPAM?'){
+      canBeShown = false;
+    }
+
     var ss = SpreadsheetApp.openById(SHEET_ID);
     var sheet = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
     ensureHeaders(sheet);
 
-    // --- Lapisan 4: moderasi -> Approved default FALSE ---
+    // --- Lapisan 4: moderasi -> Approved default TRUE ---
     sheet.appendRow([
       new Date(),
       data.name || '',
       data.attend || '',
       data.guests || '',
       data.message || '',
-      false,
+      canBeShown,
       flag
     ]);
 
@@ -87,7 +93,8 @@ function isSpam(text) {
     'new member', 'link alternatif', 'situs resmi', 'akun pro', 'scatter',
     'zeus', 'olympus', 'cuan', 'wd '];
   for (var i = 0; i < bad.length; i++) {
-    if (t.indexOf(bad[i]) >= 0) return true;
+    var re = new RegExp('\\b' + bad[i].trim() + '\\b', 'i');
+    if (re.test(t)) return true;
   }
   return false;
 }

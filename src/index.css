@@ -154,7 +154,7 @@ section{padding:80px 30px;position:relative}
 .bank-card__number {
     position: absolute;
     left: 24px;
-    bottom: 64px;
+    bottom: 80px;
     font-family: 'Cormorant Garamond', serif;
     font-size: 26px;
     font-weight: 600;
@@ -165,7 +165,7 @@ section{padding:80px 30px;position:relative}
 .bank-card__name {
     position: absolute;
     left: 24px;
-    bottom: 34px;
+    bottom: 55px;
     font-size: 12px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -198,7 +198,7 @@ section{padding:80px 30px;position:relative}
     position: relative;
     width: 100%;
     max-width: 420px;
-    aspect-ratio: 1.4 / 1;
+    aspect-ratio: 1.2 / 1;
     margin: 28px auto 0;
     padding: 20px 24px;
     box-sizing: border-box;

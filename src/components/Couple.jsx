@@ -9,7 +9,10 @@ function Person({ role, person, photo }) {
       <p className="parents">
         {role === 'The Groom' ? 'Putra dari' : 'Putri dari'}
         <br />
-        Bapak {person.father} &amp; Ibu {person.mother}
+        Bapak {person.father}
+        <br/> &amp; 
+        <br/>
+        Ibu {person.mother}
       </p>
     </div>
   )

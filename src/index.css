@@ -198,7 +198,7 @@ section{padding:80px 30px;position:relative}
     position: relative;
     width: 100%;
     max-width: 420px;
-    aspect-ratio: 1.2 / 1;
+    /* aspect-ratio: 1.2 / 1; */
     margin: 28px auto 0;
     padding: 20px 24px;
     box-sizing: border-box;
